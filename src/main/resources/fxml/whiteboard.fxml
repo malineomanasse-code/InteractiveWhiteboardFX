@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.interactivewhiteboard.WhiteboardController"
+            stylesheets="@../styles/main.css">
+
+    <!-- Top Toolbar -->
+    <top>
+        <HBox fx:id="topToolbar" styleClass="toolbar" spacing="15" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="10" right="15" bottom="10" left="15"/>
+            </padding>
+
+            <Button fx:id="saveBtn" text="💾 Save" styleClass="button" />
+            <Button fx:id="loadBtn" text="📁 Load" styleClass="button" />
+            <Separator orientation="VERTICAL" />
+            <Button fx:id="addImageBtn" text="🖼️ Add Image" styleClass="button" />
+            <Button fx:id="addTextBtn" text="📝 Add Text" styleClass="button" />
+            <Separator orientation="VERTICAL" />
+            <Button fx:id="clearBtn" text="🗑️ Clear" styleClass="button" />
+            <ToggleButton fx:id="gridToggle" text="📊 Grid" styleClass="toggle-button" />
+            <Separator orientation="VERTICAL" />
+            <Label fx:id="statusLabel" text="Status: Ready" styleClass="status-label" />
+        </HBox>
+    </top>
+
+    <!-- Left Toolbar -->
+    <left>
+        <VBox fx:id="leftToolbar" styleClass="left-toolbar" spacing="20" prefWidth="200">
+            <Label text="Drawing Tools" styleClass="section-header" />
+
+            <HBox spacing="10">
+                <VBox spacing="10">
+                    <Button fx:id="pencilBtn" text="✏️ Pencil" styleClass="button tool-button" />
+                    <Button fx:id="lineBtn" text="📏 Line" styleClass="button tool-button" />
+                    <Button fx:id="rectangleBtn" text="⬜ Rectangle" styleClass="button tool-button" />
+                </VBox>
+                <VBox spacing="10">
+                    <Button fx:id="circleBtn" text="⭕ Circle" styleClass="button tool-button" />
+                    <Button fx:id="textBtn" text="🔤 Text" styleClass="button tool-button" />
+                    <Button fx:id="eraserBtn" text="🧽 Eraser" styleClass="button tool-button" />
+                </VBox>
+            </HBox>
+
+            <ComboBox fx:id="toolSelector" promptText="Select Tool" />
+
+            <Separator />
+
+            <Label text="Brush Settings" styleClass="section-header" />
+            <ColorPicker fx:id="colorPicker" value="BLACK" />
+
+            <VBox spacing="5">
+                <Label text="Brush Size:" styleClass="label" />
+                <Slider fx:id="brushSizeSlider" min="1" max="50" value="3"
+                        showTickLabels="true" showTickMarks="true" />
+                <Label fx:id="brushSizeLabel" text="Size: 3.0" styleClass="brush-size-label" />
+            </VBox>
+
+            <Separator />
+
+            <VBox spacing="10">
+                <Label text="Quick Colors" styleClass="section-header" />
+                <HBox spacing="5">
+                    <Button style="-fx-background-color: #FF0000; -fx-min-width: 30; -fx-min-height: 30;"
+                            onAction="#setRedColor" />
+                    <Button style="-fx-background-color: #00FF00; -fx-min-width: 30; -fx-min-height: 30;"
+                            onAction="#setGreenColor" />
+                    <Button style="-fx-background-color: #0000FF; -fx-min-width: 30; -fx-min-height: 30;"
+                            onAction="#setBlueColor" />
+                    <Button style="-fx-background-color: #000000; -fx-min-width: 30; -fx-min-height: 30;"
+                            onAction="#setBlackColor" />
+                    <Button style="-fx-background-color: #FFFFFF; -fx-border-color: #000; -fx-min-width: 30; -fx-min-height: 30;"
+                            onAction="#setWhiteColor" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Center Canvas -->
+    <center>
+        <StackPane style="-fx-background-color: #2c3e50; -fx-padding: 20;">
+            <Canvas fx:id="drawingCanvas" width="800" height="600" styleClass="canvas" />
+        </StackPane>
+    </center>
+
+</BorderPane>
